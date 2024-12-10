@@ -5,6 +5,10 @@ yum update -y
 yum install -y httpd
 systemctl start httpd
 systemctl enable httpd
+yum install -y rsyslog
+systemctl start rsyslog
+systemctl enable rsyslog
+systemctl restart rsyslog
 
 # Get the IMDSv2 token
 TOKEN=$(curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600")
@@ -24,18 +28,14 @@ echo "
 <!doctype html>
 <html lang=\"en\" class=\"h-100\">
 <head>
-<title>Details for EC2 instance</title>
+<title>Hello World</title>
 </head>
 <body>
 <div>
-<h1>AWS Instance Details</h1>
-<h1>Samurai Katana</h1>
-
+<h1>Armageddon has arrived</h1>
 <br>
-# insert an image or GIF
-<img src="https://www.w3schools.com/images/w3schools_green.jpg" alt="W3Schools.com">
+<iframe src="https://giphy.com/embed/wSCPBqOUEpvGw" width="640" height="480" style="" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/time-friday-thread-wSCPBqOUEpvGw"></a></p>
 <br>
-
 <p><b>Instance Name:</b> $(hostname -f) </p>
 <p><b>Instance Private Ip Address: </b> ${local_ipv4}</p>
 <p><b>Availability Zone: </b> ${az}</p>
